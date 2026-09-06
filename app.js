@@ -1,8 +1,12 @@
 //Importaciones
-import sequelize from 'sequelize';
+import express from 'sequelize';
+import 'dotenv/config';
+
+//Variables de dotenv
+const PORT = process.env.PORT;
 
 
-
+//App
 const app = express();
 
 
@@ -18,4 +22,7 @@ app.get('/test', (req, res) => {
   res.send('Ok')
 })
 
-
+//Iniciar servidor
+app.listen('PORT', () => {
+  console.log(`El servidor se ha iniciado en el puerto ${PORT}`);3
+})

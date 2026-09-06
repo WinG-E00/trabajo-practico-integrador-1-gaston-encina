@@ -11,7 +11,7 @@
     "url": "git+https://github.com/WinG-E00/trabajo-practico-integrador-1-gaston-encina.git"
   },
   "keywords": [],
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/WinG-E00/trabajo-practico-integrador-1-gaston-encina/issues"
   },
@@ -23,6 +23,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.24.3",
     "sequelize": "^6.37.8"
   }
