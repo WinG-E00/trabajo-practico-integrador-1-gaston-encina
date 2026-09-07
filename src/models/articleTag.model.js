@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database";
+import sequelize from "../config/database.js";
 
 const ArticleTag = sequelize.define('ArticleTag', {
   id: {
@@ -12,3 +12,4 @@ const ArticleTag = sequelize.define('ArticleTag', {
 })
 
 
+export default ArticleTag;

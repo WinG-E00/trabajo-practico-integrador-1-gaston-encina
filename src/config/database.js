@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import Sequelize from "sequelize";
+import { Sequelize } from "sequelize";
 
 
 
@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
     port: Number(process.env.DB_PORT),
     logging: false,
   }
-)
+);
 
 
 

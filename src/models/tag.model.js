@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database";
+import sequelize from "../config/database.js";
 
 
 const Tag = sequelize.define('Tag', {
@@ -11,6 +11,7 @@ const Tag = sequelize.define('Tag', {
   },
   name: {
     type: DataTypes.STRING(30),
+    allowNull: false,
     validate: {
       len: [2, 30],
       notNull: { msg: 'El nombre no puede estar vacio' }
@@ -20,3 +21,6 @@ const Tag = sequelize.define('Tag', {
 }, {
   timestamps: true,
 })
+
+
+export default Tag ;

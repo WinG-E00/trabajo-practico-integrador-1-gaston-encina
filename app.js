@@ -2,7 +2,7 @@
 import express from 'express';
 import 'dotenv/config';
   //Import funcion para sincronizar base de datos
-import initModels from './src/config/database.sync.js'
+import { initModels } from './src/config/database.sync.js'
 
 
 //Variables de dotenv
@@ -36,12 +36,9 @@ async function initServer() {
     await initModels();
 
     //Iniciar servidor
-    app.listen('PORT', () => {
+    app.listen(PORT, () => {
       console.log(`El servidor se ha iniciado en el puerto ${PORT}`);3
     })
-
-
-
 
   }catch(err){
 
@@ -50,3 +47,5 @@ async function initServer() {
   }
 
 };
+
+initServer()
