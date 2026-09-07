@@ -5,7 +5,7 @@ import Tag from '../models/tag.model.js';
 import Profile from '../models/profile.model.js';
 import Article from '../models/article.model.js';
 import ArticleTag from '../models/articleTag.model.js';
-
+import '../models/relations.js'
 
 export async function initModels() {
 
@@ -24,5 +24,3 @@ export async function initModels() {
   }
 
 }
-
-

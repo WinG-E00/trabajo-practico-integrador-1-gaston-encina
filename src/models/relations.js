@@ -1,17 +1,18 @@
-import User from "./user.model";
-import Profile from "./profile.model";
-import Article from "./article.model";
-import ArticleTag from "./articleTag.model";
+import User from "./user.model.js";
+import Profile from "./profile.model.js";
+import Article from "./article.model.js";
+import ArticleTag from "./articleTag.model.js";
+import Tag from "./tag.model.js"
 
 //Relacion de uno a uno con profile
-// User tiene un profile 
+// User tiene un profile
 User.hasOne(Profile, {
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
   as: 'profile'
 })
 
 Profile.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
   as: 'user'
 })
 
@@ -21,16 +22,16 @@ Profile.belongsTo(User, {
 
 
 
-//relacion de muchos 
+//relacion de muchos
 User.hasMany(Article, {
-  foreignKey: 'article_id',
+  foreignKey: 'userId',
   as: 'article',
   onDelete: 'CASCADE',
   hooks: true
 })
 
 Article.belongsTo(User, {
-  foreignKey: 'article_id',
+  foreignKey: 'userId',
   as: 'author'
 })
 
@@ -40,22 +41,14 @@ Article.belongsTo(User, {
 //relacion de muchos a muchos
 Article.belongsToMany(Tag, {
   through: ArticleTag,
-  foreignKey: 'article_id',
-  otherKey: 'tag_id',
+  foreignKey: 'articleId',
+  otherKey: 'tagId',
   as: 'tags',
 });
 
 Tag.belongsToMany(Article, {
   through: ArticleTag,
-  foreignKey: 'tag_id',
-  otherKey: 'article_id',
+  foreignKey: 'tagId',
+  otherKey: 'articleId',
   as: 'articles',
 });
-
-
-
-
-
-
-
-
