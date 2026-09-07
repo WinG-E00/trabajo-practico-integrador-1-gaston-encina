@@ -1,6 +1,9 @@
-//Importaciones
-import express from 'sequelize';
+  //Importaciones
+import express from 'express';
 import 'dotenv/config';
+  //Import funcion para sincronizar base de datos
+import initModels from './src/config/database.sync.js'
+
 
 //Variables de dotenv
 const PORT = process.env.PORT;
@@ -22,7 +25,28 @@ app.get('/test', (req, res) => {
   res.send('Ok')
 })
 
-//Iniciar servidor
-app.listen('PORT', () => {
-  console.log(`El servidor se ha iniciado en el puerto ${PORT}`);3
-})
+
+
+
+async function initServer() {
+
+  try {
+
+    //sincronizar los modelos
+    await initModels();
+
+    //Iniciar servidor
+    app.listen('PORT', () => {
+      console.log(`El servidor se ha iniciado en el puerto ${PORT}`);3
+    })
+
+
+
+
+  }catch(err){
+
+    console.error('Error al conetar con la base de datos', err)
+
+  }
+
+};

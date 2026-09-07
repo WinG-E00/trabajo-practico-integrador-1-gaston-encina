@@ -4,7 +4,7 @@ import sequelize from './database.js';
 
 
 
-export async function initModels() {
+async function initModels() {
 
   try {
     
@@ -16,7 +16,10 @@ export async function initModels() {
     console.log('Modelos sincronizados');
 
   } catch (error) {
-    console.log('Hubo un error al iniciar la base de datos')
+    console.log('Hubo un error al cargar los modelos y sincronizar la base de datos')
   }
   
 }
+
+
+export default initModels();
