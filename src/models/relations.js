@@ -19,10 +19,14 @@ Profile.belongsTo(User, {
 
 
 
+
+
 //relacion de muchos 
 User.hasMany(Article, {
   foreignKey: 'article_id',
-  as: 'article'
+  as: 'article',
+  onDelete: 'CASCADE',
+  hooks: true
 })
 
 Article.belongsTo(User, {
@@ -47,6 +51,8 @@ Tag.belongsToMany(Article, {
   otherKey: 'article_id',
   as: 'articles',
 });
+
+
 
 
 
