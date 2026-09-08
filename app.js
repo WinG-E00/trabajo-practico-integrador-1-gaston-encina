@@ -4,6 +4,11 @@ import 'dotenv/config';
   //Import funcion para sincronizar base de datos
 import { initModels } from './src/config/database.sync.js'
 
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
+
+
 
 //Variables de dotenv
 const PORT = process.env.PORT;
@@ -15,6 +20,12 @@ const app = express();
 
 //configuracion del app
 app.use(express.json())
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true // CRUCIAL: permitir cookies
+}));
+app.use(cookieParser()); //
 
 
 //Configuracion de las rutas
