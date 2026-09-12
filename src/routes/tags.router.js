@@ -6,6 +6,7 @@ import { listAllTags } from '../controller/tags.controllers/listAllTags.js';
 import { getSpecificTag } from '../controller/tags.controllers/getSpecificTag.js';
 import { updateTag } from '../controller/tags.controllers/updateTag.js';
 import { deleteTag } from '../controller/tags.controllers/deleteTag.js';
+import { authUser } from '../middlewares/authMidlewares/authUser.js';
 
 
 // ● POST /api/tags → Crear etiqueta (solo admin).
@@ -19,7 +20,7 @@ import { deleteTag } from '../controller/tags.controllers/deleteTag.js';
 const router = Router();
 
 router.post('/', adminValidation ,createTag);
-router.get('/',/*Me falta un validador que verifi que el usuario esta autorizado */ listAllTags);
+router.get('/',authUser, listAllTags);
 router.get('/:id', adminValidation, getSpecificTag);
 router.put('/:id',adminValidation ,updateTag);
 router.delete('/:id',adminValidation ,deleteTag);
