@@ -1,5 +1,17 @@
 import { Router } from 'express';
+//Controlador de prueba...
 import { nothingController } from '../controller/nothing.controller.js';
+
+//controladores
+import { listAllUser } from '../controller/user.controllers/listAllUsers.js';
+import { getUsersById } from '../controller/user.controllers/getUsersById.js';
+import { createUser } from '../controller/user.controllers/createUser.js';
+
+
+
+//validadores
+import { adminValidation } from '../middlewares/authMidlewares/isAdminValidator.middleware.js';
+
 
 
 const router = Router();
@@ -12,9 +24,9 @@ const router = Router();
 // ● DELETE /api/users/:id → Eliminación lógica de usuario (solo admin).
 
 
-router.get('/', nothingController);
-router.get('/:id', nothingController);
-router.post('/', nothingController);
+router.get('/', adminValidation ,listAllUser );
+router.get('/:id',adminValidation ,getUsersById);
+router.post('/', adminValidation, createUser);
 router.put('/:id', nothingController);
 router.delete('/:id', nothingController);
 

@@ -1,4 +1,5 @@
-import { hashPassword } from "../../helpers/bcrypt.helper";
+
+import { hashPassword } from "../../helpers/bcrypt.helper.js";
 import User from "../../models/user.model.js";
 
 export const register = async (req, res) => {
@@ -7,8 +8,6 @@ try {
 
 // 1. Hashear la contraseña ANTES de guardar
   const hashedPassword = await hashPassword(password);
-
-
   
   await User.create({
     username,
@@ -17,7 +16,7 @@ try {
     role
   });
 
-  return res.status(201).json({ message: "Usuario registradoexitosamente" });
+  return res.status(201).json({ message: "Usuario registrado exitosamente" });
   
 
 } catch (error) {

@@ -11,12 +11,8 @@ export const login = async (req, res) => {
   // 1. Buscar usuario en la base de datos
   const user = await User.findOne({
     where: { username }, // Solo buscamos por username
-    include: {
-      model: User,
-      attributes: ["username"],
-      as: "user",
-    },
   });
+
   if (!user) {
     return res.status(401).json({ message: "Credenciales inválidas" });
   }
@@ -31,10 +27,11 @@ export const login = async (req, res) => {
   // 3. Si la contraseña es correcta, generar JWT
   const token = generateToken({
     id: user.id,
-    username: user.username
+    username: user.username,
+    role: user.role,
   });
 
-  
+
   res.cookie("token", token, {
     httpOnly: true,
     maxAge: 1000 * 60 * 60, // 1 hora

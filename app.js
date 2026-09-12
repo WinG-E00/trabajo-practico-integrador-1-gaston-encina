@@ -3,40 +3,29 @@ import express from 'express';
 import 'dotenv/config';
   //Import funcion para sincronizar base de datos
 import { initModels } from './src/config/database.sync.js'
+  //import de el router principal
+import router from './src/routes/router.js';
 
-import cors from "cors";
+
 import cookieParser from "cookie-parser";
 
-
-
-
-//Variables de dotenv
 const PORT = process.env.PORT;
-
 
 //App
 const app = express();
 
-
 //configuracion del app
 app.use(express.json())
+app.use(cookieParser());
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true // CRUCIAL: permitir cookies
-}));
-app.use(cookieParser()); //
-
-
-//Configuracion de las rutas
+//Montar router
+app.use('/api', router)
 
 
 // endpoint de testeo del servidor de express
 app.get('/test', (req, res) => {
   res.send('Ok')
 })
-
-
 
 
 async function initServer() {
