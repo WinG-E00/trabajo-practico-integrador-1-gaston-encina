@@ -10,6 +10,7 @@ export const listAllTags = async (req, res) => {
     return res.status(200).json({ message: "Se encontraron todas las etiquetas", allTags })
 
   } catch (error) {
+
     return res.status(500).json({ message: "Hubo un error al intentar listar todas las etiquetas", error })
   }
 
