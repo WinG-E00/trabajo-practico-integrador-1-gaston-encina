@@ -6,6 +6,7 @@ import { nothingController } from '../controller/nothing.controller.js';
 import { listAllUser } from '../controller/user.controllers/listAllUsers.js';
 import { getUsersById } from '../controller/user.controllers/getUsersById.js';
 import { createUser } from '../controller/user.controllers/createUser.js';
+import { updateUser } from '../controller/user.controllers/updateUser.js';
 
 
 
@@ -27,7 +28,7 @@ const router = Router();
 router.get('/', adminValidation ,listAllUser );
 router.get('/:id',adminValidation ,getUsersById);
 router.post('/', adminValidation, createUser);
-router.put('/:id', nothingController);
+router.put('/:id', adminValidation, updateUser);
 router.delete('/:id', nothingController);
 
 
