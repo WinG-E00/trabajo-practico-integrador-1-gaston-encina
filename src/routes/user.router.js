@@ -12,6 +12,7 @@ import { updateUser } from '../controller/user.controllers/updateUser.js';
 
 //validadores
 import { adminValidation } from '../middlewares/authMidlewares/isAdminValidator.middleware.js';
+import { deleteUser } from '../controller/user.controllers/deleteUser.js';
 
 
 
@@ -29,7 +30,7 @@ router.get('/', adminValidation ,listAllUser );
 router.get('/:id',adminValidation ,getUsersById);
 router.post('/', adminValidation, createUser);
 router.put('/:id', adminValidation, updateUser);
-router.delete('/:id', nothingController);
+router.delete('/:id', adminValidation, deleteUser);
 
 
 export default router;

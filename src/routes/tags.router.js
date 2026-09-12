@@ -1,5 +1,9 @@
 import Router from 'express';
 import { nothingController } from '../controller/nothing.controller.js';
+import { createTag } from '../controller/tags.controllers/createTag.js';
+import { adminValidation } from '../middlewares/authMidlewares/isAdminValidator.middleware.js';
+import { listAllTags } from '../controller/tags.controllers/listAllTags.js';
+import { getSpecificTag } from '../controller/tags.controllers/getSpecificTag.js';
 
 
 // ● POST /api/tags → Crear etiqueta (solo admin).
@@ -11,9 +15,10 @@ import { nothingController } from '../controller/nothing.controller.js';
 
 
 const router = Router();
-router.post('/', nothingController);
-router.get('/', nothingController);
-router.get('/:id', nothingController);
+
+router.post('/', adminValidation ,createTag);
+router.get('/',/*Me falta un validador que verifi que el usuario esta autorizado */ listAllTags);
+router.get('/:id', adminValidation, getSpecificTag);
 router.put('/:id', nothingController);
 router.delete('/:id', nothingController);
 
