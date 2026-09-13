@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 
 
-//User router
+//rutas routers
 import userRouter from './user.router.js';
 import tagsRouter from './tags.router.js'
 import articlesRouter from './articles.router.js'
