@@ -1,5 +1,5 @@
 import ArticleTag from "../../models/articleTag.model.js";
-import Article from "../../models/article.js";
+import Article from "../../models/article.model.js";
 
 export const addTagToArticleAuthor = async (req, res) => {
 
