@@ -8,17 +8,20 @@ import { getArticlesByTokenAndId } from '../controller/article.controllers/getAr
 import { getArticlesByTokenId } from '../controller/article.controllers/getArticlesByTokenId.controller.js';
 import { updateArticle } from '../controller/article.controllers/updateArticle.controller.js';
 import { deleteArticle } from '../controller/article.controllers/deleteArticle.controller.js';
+import Article from '../models/article.model.js';
+import { resourceIdValidator } from '../middlewares/validators/resource.validator.js';
+import { articleUpdateValidator, articleValidator } from '../middlewares/validators/article.validators/article.validator.js';
 
 
 const router = Router();
 
-router.post('/', authUser ,createArticle);
+router.post('/', authUser, articleValidator, createArticle);
 router.get('/', authUser,  listArticles);
-router.get('/:id', authUser, articlesById);
 router.get('/user', authUser, getArticlesByTokenId);
-router.get('/user/:id', authUser , getArticlesByTokenAndId);
-router.put('/:id', authUser, updateArticle);
-router.delete('/:id', authUser , deleteArticle);
+router.get('/user/:id', authUser, resourceIdValidator(Article, 'id', 'El artículo'), getArticlesByTokenAndId);
+router.get('/:id', authUser, resourceIdValidator(Article, 'id', 'El artículo'), articlesById);
+router.put('/:id', authUser, resourceIdValidator(Article, 'id', 'El artículo'), articleUpdateValidator, updateArticle);
+router.delete('/:id', authUser, resourceIdValidator(Article, 'id', 'El artículo'), deleteArticle);
 
 
 export default router;

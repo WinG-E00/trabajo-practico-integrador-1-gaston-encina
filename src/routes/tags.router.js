@@ -7,6 +7,9 @@ import { getSpecificTag } from '../controller/tags.controllers/getSpecificTag.js
 import { updateTag } from '../controller/tags.controllers/updateTag.js';
 import { deleteTag } from '../controller/tags.controllers/deleteTag.js';
 import { authUser } from '../middlewares/authMidlewares/authUser.js';
+import Tag from '../models/tag.model.js';
+import { resourceIdValidator } from '../middlewares/validators/resource.validator.js';
+import { tagUpdateValidator, tagValidator } from '../middlewares/validators/tag.validators/tag.validator.js';
 
 
 // ● POST /api/tags → Crear etiqueta (solo admin).
@@ -19,11 +22,11 @@ import { authUser } from '../middlewares/authMidlewares/authUser.js';
 
 const router = Router();
 
-router.post('/', adminValidation ,createTag);
+router.post('/', adminValidation, tagValidator, createTag);
 router.get('/',authUser, listAllTags);
-router.get('/:id', adminValidation, getSpecificTag);
-router.put('/:id',adminValidation ,updateTag);
-router.delete('/:id',adminValidation ,deleteTag);
+router.get('/:id', adminValidation, resourceIdValidator(Tag, 'id', 'La etiqueta'), getSpecificTag);
+router.put('/:id', adminValidation, resourceIdValidator(Tag, 'id', 'La etiqueta'), tagUpdateValidator, updateTag);
+router.delete('/:id', adminValidation, resourceIdValidator(Tag, 'id', 'La etiqueta'), deleteTag);
 
 
 export default router;

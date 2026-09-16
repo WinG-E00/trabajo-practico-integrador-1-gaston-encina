@@ -13,6 +13,9 @@ import { updateUser } from '../controller/user.controllers/updateUser.js';
 //validadores
 import { adminValidation } from '../middlewares/authMidlewares/isAdminValidator.middleware.js';
 import { deleteUser } from '../controller/user.controllers/deleteUser.js';
+import User from '../models/user.model.js';
+import { resourceIdValidator } from '../middlewares/validators/resource.validator.js';
+import { userUpdateValidator, userValidator } from '../middlewares/validators/user.validators/user.validator.js';
 
 
 
@@ -27,10 +30,10 @@ const router = Router();
 
 
 router.get('/', adminValidation ,listAllUser );
-router.get('/:id',adminValidation ,getUsersById);
-router.post('/', adminValidation, createUser);
-router.put('/:id', adminValidation, updateUser);
-router.delete('/:id', adminValidation, deleteUser);
+router.get('/:id', adminValidation, resourceIdValidator(User, 'id', 'El usuario'), getUsersById);
+router.post('/', adminValidation, userValidator, createUser);
+router.put('/:id', adminValidation, resourceIdValidator(User, 'id', 'El usuario'), userUpdateValidator, updateUser);
+router.delete('/:id', adminValidation, resourceIdValidator(User, 'id', 'El usuario'), deleteUser);
 
 
 export default router;
