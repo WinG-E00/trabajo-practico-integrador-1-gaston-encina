@@ -4,14 +4,14 @@ import jwt from 'jsonwebtoken';
 
 export const authUser = async (req, res, next) => {
 
-  const token = req.cookies.token;
+  const token = req.cookies?.token;
 
   if (!token) {
     return res.status(401).json({ message: "Necesitas inciar sesion"})
   }
 
   try {
-    const user = jwt.verify(token, procces.env.JWT_SECRET)
+    const user = jwt.verify(token, process.env.JWT_SECRET)
 
     //Aca se guarda la informacion de el usuario de la cookie
     req.authUser = user;
@@ -27,4 +27,3 @@ export const authUser = async (req, res, next) => {
   }
 
 };
-2

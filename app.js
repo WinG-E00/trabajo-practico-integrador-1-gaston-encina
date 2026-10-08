@@ -6,6 +6,9 @@ import { initModels } from './src/config/database.sync.js'
   //import de el router principal
 import router from './src/routes/router.js';
 
+import cors from  'cors'
+
+
 
 import cookieParser from "cookie-parser";
 
@@ -17,6 +20,14 @@ const app = express();
 //configuracion del app
 app.use(express.json())
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:5173', // URL exacta de tu frontend en React con Vite
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true // Opcional: actívalo si necesitas enviar cookies (como JWT en cookies) o sesiones
+}));
+
+
+
 
 //Montar router
 app.use('/api', router)
